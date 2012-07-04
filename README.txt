@@ -1,3 +1,5 @@
+Easily create various states of an object without having to redefine the entire object.
+
 JSONFactory.define('User', {
     'id': 1,
     'name': 'Alice',
