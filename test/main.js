@@ -35,7 +35,7 @@ describe('JSONFactory.build', function () {
 		assert.equal(result.firstname, 'Jane');
 	});
 
-	it("modifying a built object shouldn't alter the original", function () {
+	it("should not alter the defined object once built", function () {
 		var intermediate = JSONFactory.build('User'),
 			result = null;
 
@@ -45,5 +45,27 @@ describe('JSONFactory.build', function () {
 		result = JSONFactory.build('User');
 
 		assert.deepEqual(result, userDefinition);
+	});
+
+
+	it("should not allow altering of passed in properties once built", function () {
+		var credentials = {
+				username: 'super',
+				password: 'secret'
+		},
+			creditcards = [{
+				type: 'visa',
+				number: '1234567890'
+		}],
+			intermediate = JSONFactory.build('User', {
+				'creditcards': creditcards,
+				'credentials': credentials
+			});
+
+		intermediate.creditcards[0].type = 'discover';
+		intermediate.credentials.password = 'easy';
+
+		assert.equal(creditcards[0].type, 'visa');
+		assert.equal(credentials.password, 'secret');
 	});
 });

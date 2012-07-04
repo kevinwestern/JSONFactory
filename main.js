@@ -32,7 +32,7 @@
 	var merge = function (obj1, obj2) {
 	    Object.keys(obj2).forEach(function(key){
 		    if (obj2[key] instanceof Array) {
-		        obj1[key] = Array.prototype.slice.call(obj2[key]);
+		        obj1[key] = cloner(obj2[key]);
 		    } else if (obj2[key] instanceof Object) {
 		        obj1[key] = merge({}, obj2[key]);
 		    } else {
