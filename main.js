@@ -55,7 +55,7 @@
 
 		function build (name, properties) {
 			if (!definitions.hasOwnProperty(name)) {
-				throw new ReferenceError('Object Not Defined');
+				throw new ReferenceError('JSONFactory: No Definition for ' + name);
 			}
 		    var definition = cloner(definitions[name]);
 		    properties = properties || {};
