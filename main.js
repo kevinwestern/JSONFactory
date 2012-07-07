@@ -30,7 +30,10 @@
 	};
 
 	var merge = function (obj1, obj2) {
-	    Object.keys(obj2).forEach(function(key){
+	    for (var key in obj2) {
+	    	if (!obj2.hasOwnProperty(key)) {
+	    		continue;
+	    	}
 		    if (obj2[key] instanceof Array) {
 		        obj1[key] = cloner(obj2[key]);
 		    } else if (obj2[key] instanceof Object) {
@@ -38,7 +41,7 @@
 		    } else {
 		        obj1[key] = obj2[key];
 		    }
-		});
+		};
 	    return obj1;
 	};
 
